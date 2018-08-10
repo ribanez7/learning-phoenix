@@ -7,6 +7,7 @@ defmodule StorexWeb.Router do
     plug :fetch_flash
     plug :protect_from_forgery
     plug :put_secure_browser_headers
+    plug StorexWeb.Plugs.Cart
   end
 
   pipeline :api do
@@ -14,7 +15,7 @@ defmodule StorexWeb.Router do
   end
 
   scope "/", StorexWeb do
-    pipe_through :browser # Use the default browser stack
+    pipe_through :browser
 
     get "/", BookController, :index
     get "/books/:id", BookController, :show
